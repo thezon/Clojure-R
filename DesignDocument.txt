@@ -1,0 +1,73 @@
+
+
+High level design principles 
+
+1)ClojuRe DSL specification should attempt to mimic Clojure idiomatic structures
+2)DSL functions should be decoupled from generation of code
+3)Code Generation should be independent of dsl and emit functions
+
+
+DSL
+This is the Clojure R interface to the user. These functions generate clojure 
+data structure representation of R counter parter. 
+
+Standards for these functions:
+1. Emit Clojure representation of R as specified by R Clojure data structure section. 
+2. All functions begin with R-<fuction name>
+3. 
+
+
+R Clojure data structure
+
+(R-function para para) -> {:R-struc true :oper :R-function :parms [para para]}
+
+
+Generator / emitter
+
+
+Generation
+
+5.0 Compromises
+
+5.1 The use of protocols
+5.1.1 purpose
+
+To provide a consistancy the use of protocols was contiplated such as the following:
+
+5.1.2 decision
+
+This methodogly was not adopted do to slight violation of design principles do to coupling of code generation and clojure R 
+structure representation. These should be decoupled since it may be possible to emit different output (in this case 
+rather than string). In the future research will be done to generate R bytcode directly and this decision will allow for
+and change in names pace only. 
+
+5.1.3 proposed solution
+
+(defprotocol prot-R-command
+     (create-data-struct [_])
+     (emit-exicute-code [_]))
+
+Resulting in an example implimentation:
+
+(defn R->vector [& values]
+  "Takes vector, R-vector, numbers or attribute map"
+  (reify 
+    prot-R-command
+    (create-data-struct [_]
+     (internal-R-struct :R->vector [(into [] values)]))
+    (emit-exicute-code [_]
+      (str (reduce str "c("  (interpose "," values)) ")"))))
+      
+Using code generator: 
+
+(defn R->generate [R-rep]
+  "Mapping of clojure R representation to R language"
+  (let [struct (create-data-struct R-rep)]
+    (emit-exicute-code 
+      (apply (resolve (symbol (name (:oper struct))))
+             (for [entry (:parms struct)]
+               (cond 
+                 (.contains (str (class entry)) "reify") (R->generate-command entry) ; bad way to check condition
+                 (seq? entry) (apply R->generate-command entry) ;ignore unintitional seq wraps
+                 :default  entry))))))
+
