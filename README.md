@@ -31,7 +31,7 @@ This project is dedicated to combining the power of the open source R and Clojur
   
   
 ## Change History / Comming soon
-0.1 10/1/2014
+0.1 10/1/2014 <br/>
 Fully inclusive clojure R DSL with IDE
 
 0.2 6/30/2015     
