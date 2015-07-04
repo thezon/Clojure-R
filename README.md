@@ -43,6 +43,6 @@ R studio server or thick client through associated connections.
 TBA
 
 ## License
-Copyright © 2014 
+Copyright © 2015 
 
-Cloju'R'e is available under the GPLv3 license, see LICENSE.txt for the full text of the license. Cloju'R'e also includes code from Renjin and R which is redistributed here. R uses many different licenses so check the file sources to see which license applies.
+Clojure-R is available under the GPLv3 license, see LICENSE.txt for the full text of the license. R uses many different licenses so check the file sources to see which license applies.
