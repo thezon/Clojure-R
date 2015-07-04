@@ -1,16 +1,13 @@
-<table style="border: none !important;"><tr><td style="font: large bold !important;">ClojuRe v0.1</td><td>
+<table style="border: none !important;"><tr><td style="font: large bold !important;">ClojuRe v0.2</td><td>
   <img src="https://16afd541-a-62cb3a1a-s-sites.googlegroups.com/site/thezonwiki/technologies/clojuReIcon.png?attachauth=ANoY7cog_PBGhYP31-OL28Ij9umWvkORdiTVXeKILg95mEL8lava6vEfBCuB1jzKuD38WhQJDK50_kYOwa45AbT0CXgTiJLlHb7EPkxipllBrePYeJ9SZjboVruPAz5OtF2qCEVxAtRtd47rcrD7gDG3ZqIYGWisl3HAwdMzWYWn2RGT4Es-1pre4X-rGjwRsjU5ucP2XDBrodNRAZd2CiIKXYh7NqafuRnZ4VkgF06L-Zg6r_EoWQE%3D&attredirects=0"  style="width:30px;height:22px"></td></tr></table>
 =======
 
 Clojure Targeting R 
 
-Cloju'R'e is the Clojure functional language (dialect of Lisp) targeting the R statistical analysis environment. The goal is to transition R to the JVM using Renjin and endowing it with one of the most promising functional languages. We believe that this approach will bring the cultivated R environment into the mainstream. With a vast number of iron clad statistical libraries coupled with an elegant language and endowed with a portable environment, Cloju'R'e may become a leading Statistical development tool.
+Clojure-R is a functional language (dialect of Lisp implemented in Clojure) targeting the R statistical language. We believe that this approach will bring a cultivated R environment into the mainstream. With a vast number of iron clad statistical libraries coupled with an elegant language and endowed with a portable environment, Clojure-R may become a leading Statistical development tool.
 
 
-This project is dedicated to combining the power of the open source R and Clojure communities.The long term vision is to integrate the R environment and Clojure to an seamless dynamic REPL type IDE. 
-
-
-A domain specific language for R is created using existing R documentation. This provides rapid development of the R functions. The power of Clojure is not realized in R transformationed functions and thus the extension of R DSL will be required to allow idiomatic Clojure programming. Further it will be possible to use the R extension library to create Clojure R Jars.
+This project is dedicated to combining the power of the open source R and Clojure communities.The long term vision is to seamlessly wrap the R enveroment with Clojure using Clojure-R.  
 
 
   <table>
@@ -33,9 +30,17 @@ A domain specific language for R is created using existing R documentation. This
   </table>
   
   
-## Usage
+## Change History / Comming soon
+0.1 10/1/2014
+Fully inclusive clojure R DSL with IDE
 
-FIXME
+0.2 6/30/2015     
+Project scope changed to only include DSL and emition of R code. REPL will no longer be leveraged 
+as a possible R IDE or emitted code exicution with Renjin. Output code can be exicuted using
+R studio server or thick client through associated connections. 
+
+0.3  TBA
+TBA
 
 ## License
 Copyright © 2014 
