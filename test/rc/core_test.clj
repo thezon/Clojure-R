@@ -1,6 +1,7 @@
 (ns rc.core-test
   (:require [clojure.test :refer :all]
-            [RC.core :refer :all]))
+            [rc.core :refer :all]
+            :reload))
 
 
 
