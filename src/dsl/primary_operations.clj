@@ -17,4 +17,13 @@
   (gen/gen-R-struct :R->range  [low-val high-val]))
 
 (defn R->slurp [path]
-  (gen/gen-R-struct :R->slurp :params [path]))
+  (gen/gen-R-struct :R->slurp [path]))
+
+(defn R->dataframe? [var]
+  (gen/gen-R-struct :R->dataframe? [(name var)]))
+
+(defn R->vector? [var]
+  (gen/gen-R-struct :R->vector? [(name var)]))
+
+(defn R->rownames [var]
+  (gen/gen-R-struct :R->rownames? [(name var)]))

@@ -9,19 +9,23 @@
      :vec allows vectors
      :map allows maps
      :r-str allow R structure"
+    (let [cardinality (count data)]
     (cond          
       (and 
-        (> (count data) 1)
-        (some #{:num} options-vec))    [(apply dsl/R->vector data)]
+        (some #{:num} options-vec)
+        (> cardinality 1)) [(apply dsl/R->vector data)]
       (and 
-        (apply vector? data) 
-        (some #{:vec} options-vec))    [(apply dsl/R->vector (first data))]
+        (some #{:vec} options-vec)
+        (= cardinality 1)
+        (apply vector? data))    [(apply dsl/R->vector (first data))]
       (and 
+        (some #{:r-str} options-vec)
+        (= cardinality 1)
         (apply map? data)
-        (apply :R-struct data)
-        (some #{:r-str} options-vec))  [(first data)]
+        (apply :R-struct data))  [(first data)]
       (and 
-        (apply map? data) 
-        (some #{:map} options-vec))    (into [] (->> data  (apply seq) (map (fn [val] (dsl/R->= (first val) (second val))))))
-      :default                         (throw (Exception. "Invalid element in function R->summary.")))))
+        (some #{:map} options-vec)
+        (= cardinality 1)
+        (apply map? data))    (into [] (->> data  (apply seq) (map (fn [val] (dsl/R->= (first val) (second val))))))
+      :default                         (throw (Exception. "Invalid element in function R->summary."))))))
 
