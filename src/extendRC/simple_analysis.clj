@@ -1,2 +1,0 @@
-(ns extendRC.simple-analysis)
-

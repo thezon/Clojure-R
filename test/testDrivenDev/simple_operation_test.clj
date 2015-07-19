@@ -1,33 +1,34 @@
 (ns testDrivenDev.simple-operation-test
   (:require [codeGeneration.RC-code-generation :refer [R->generate]]
             [dsl.primary-operations :refer :all]
-            [dsl.composit-operations :refer :all]
             [clojure.test :refer :all]
+            [dsl.composit-operations :refer :all]
             :reload))
 
-(deftest mean-basic-test
+
   (testing "Mean structure taking simple numbers failed"
-           (is (=  (R->mean 1 1 3 3) 
-                   {:R-struct true, :oper :R->mean, :parms [{:R-struct true, :oper :R->vector, :parms [[1 1 3 3]]}]})))
-  (testing "Mean output taking simple numbers failed"
-           (is (=  (R->generate (R->mean 1 1 3 3)) "mean(c(1,1,3,3))"))))
-
-(deftest vector-basic-test
-  (testing "vector structrure taking simple numbers failed"
-           (is (=  (R->vector 1 2 3 4 5) 
-                   {:R-struct true, :oper :R->vector, :parms [[1 2 3 4 5]]})))
-  (testing "vector output taking simple numbers failed"
-           (is (=  (R->generate (R->vector 1 2 3 4 5)) "c(1,2,3,4,5)"))))
-
-(deftest summary-basic-test
-  (testing "summary structure taking simple numbers failed"
-           (is (= (R->summary 1 2 3 4) 
-                  {:R-struct true, :oper :R->summary, :parms [{:R-struct true, :oper :R->vector, :parms [[1 2 3 4]]}]})))
-  (testing "summary output taking simple numbers failed"
-           (is (= (R->generate (R->summary 1 2 3 4)) "summary(c(1,2,3,4))"))))
-
-(defn run-all []
-  (do 
-    (mean-basic-test)
-    (vector-basic-test)
-    (summary-basic-test)))
+           (is 
+             (=
+               (R->generate 
+                 (R->def :dog 4)
+                 (R->def :m1 (R->mean 
+                               (R->= :x (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))
+                               (R->= :y (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))))
+                 (R->def :m2 (R->mean 
+                               (R->= :x (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))
+                               (R->= :y (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))))
+                 (R->def :m3 (R->mean 
+                               (R->= :x (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))
+                               (R->= :y (R->vector (R->number 1) (R->number 1) (R->number 1) (R->keyword :dog) ))))
+                 (R->stripchart (R->vector (R->keyword :m1) (R->keyword :m2) (R->keyword :m3))))
+               
+               "dog<-4;m1<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));m2<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));m3<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));stripchart(c(m1,m2,m3))"))
+           (is 
+             (= 
+               (R->generate (mean 1 2 3))
+               "mean(c(1,2,3))"))
+           (is 
+             (= 
+               (R->generate (mean (R->vector 1 2 3)))
+               "mean(c(1,2,3))")))
+  

@@ -1,5 +1,8 @@
 (ns poc.protocolpoc)
 
+; This was a prototype for the use of protocols 
+; This will be remove 
+
 (defn internal-R-struct [operation parms-vec]
   {:R-struct true :oper operation :parms parms-vec})
 
