@@ -9,12 +9,22 @@ High level design principles
 
 DSL
 This is the Clojure R interface to the user. These functions generate clojure 
-data structure representation of R counter parter. 
+data structure representation of R counter part. 
 
 Standards for these functions:
 1. Emit Clojure representation of R as specified by R Clojure data structure section. 
 2. All functions begin with R-<fuction name>
-3. 
+3. Every element is wrapped in an R representitive data structure
+4. Data structure should not change based on functions
+5. Data structure should not take into consideration transformations for output
+6. 
+
+Note:
+The core DSL is verbose and does not provide the benefit of succinct syntax. Its
+purpose is to be rigorous, consistent and well formed. Extensions of this syntax
+is were the benefits become fruitful and thus is a necissisary part of this project. 
+
+
 
 
 R Clojure data structure

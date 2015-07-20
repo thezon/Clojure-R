@@ -1,8 +1,8 @@
 (ns dsl.primary-operations
   (:require [codeGeneration.RC-code-generation :as gen]))
 
-;The porpose of these is to create the correct represent datastructure 
-;There is little benifit for user to directly work with this
+;The porpose of these functions is to create representitive datastructure 
+;These functions are to verbose for users to work directly with
 
 (defn R->mean [& data]
   "Takes vector, R-vector, numbers or attribute map"
@@ -49,7 +49,7 @@
   (gen/gen-R-struct :R->vector (into [] data)))
 
 (defn R->= [var-name value]
-  (gen/gen-R-struct :R->= [(name var-name) value]))
+  (gen/gen-R-struct :R->= [ var-name value]))
 
 (defn R->vector [& data]
   (gen/gen-R-struct :R->vector (into [] data)))
