@@ -39,13 +39,13 @@ Project scope changed to only include DSL and emition of R code. REPL will no lo
 as a possible R IDE or emitted code exicution with Renjin. Output code can be exicuted using
 R studio server or thick client through associated connections. 
 
-0.3  7/30/2015
-Framework created consisting of:
-1) generator functions 
-2) internal DSL 
-3) User DSL
-4) simple compiler*
-5) preprocessor for code generations
+0.3  7/30/2015 <br/>
+Framework created consisting of:<br/>
+1) generator functions <br/>
+2) internal DSL <br/>
+3) User DSL<br/>
+4) simple compiler*<br/>
+5) preprocessor for code generations<br/>
 
 ## License
 Copyright © 2015 
