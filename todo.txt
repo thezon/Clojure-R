@@ -1,3 +1,9 @@
+Known Defects:
+1) Empty functions will fail
+	** raw data with no data can be inserted 
+
+
+
 1) rename dsl Name spaces
    a) R->??? needs to be int-R-??? in Primary-operations
    b) Composite operations NS renamed to R-operation
@@ -5,4 +11,3 @@
    d) composite functions prefixed with R->
    
    
-  

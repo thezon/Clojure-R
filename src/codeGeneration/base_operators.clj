@@ -1,8 +1,15 @@
-(ns dsl.primary-operations
+(ns codeGeneration.base-operators
   (:require [codeGeneration.RC-code-generation :as gen]))
 
-;The porpose of these functions is to create representitive datastructure 
-;These functions are to verbose for users to work directly with
+;The purpose of these functions is to create representitive datastructure 
+;These functions are verbose and normally should not be used by users
+;parameter inputs are not transformed only added to the datastructure
+
+(defn R->raw [data]
+  (assoc (gen/gen-R-struct :R->raw [data]) :raw true))
+
+(defn R->empty []
+  (assoc (gen/gen-R-struct :R->raw [""]) :raw true))
 
 (defn R->mean [& data]
   "Takes vector, R-vector, numbers or attribute map"
@@ -17,6 +24,10 @@
   (gen/gen-R-struct :R->dataframe  (into [] data)))
 
 (defn R->matrix [& data]
+  "attribute map"
+  (gen/gen-R-struct :R->matrix (into [] data)))
+
+(defn R->array [& data]
   "attribute map"
   (gen/gen-R-struct :R->matrix (into [] data)))
 
@@ -47,6 +58,15 @@
 
 (defn R->vector [& data]
   (gen/gen-R-struct :R->vector (into [] data)))
+
+(defn R->cbind [& data]
+  (gen/gen-R-struct :R->cbind (into [] data)))
+
+(defn R->rbind [& data]
+  (gen/gen-R-struct :R->rbind (into [] data)))
+
+(defn R->apply [& data]
+  (gen/gen-R-struct :R->apply (into [] data)))
 
 (defn R->= [var-name value]
   (gen/gen-R-struct :R->= [ var-name value]))

@@ -1,6 +1,6 @@
 (ns rc.core
   (:require [codeGeneration.RC-code-generation :refer [R->generate]]
-            [dsl.primary-operations :refer :all]
+            [codeGeneration.base-operators :refer :all]
             [dsl.composit-operations :refer :all]
             :reload))
 

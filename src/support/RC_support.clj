@@ -1,8 +1,11 @@
 (ns support.RC-support
-  (:require [dsl.primary-operations :as dsl]))
+  (:require [codeGeneration.base-operators :as dsl]))
 
+
+; remove in favor of logging
 (def verbose false)
 
+;remove in favor of fucntion encapolation
 (defn convert-raw-value [data-coll]
   "Converts raw numbers and keywords to R datastructs"
   (into []
@@ -15,7 +18,9 @@
   (if verbose
     (println "processing: " type "  data: " data)))
 
-;this needs to be broken into smaller functions
+
+
+;will not be abstracting this for a more rigerous functionality
 (defn stnd-input-support 
   "Resolves common parameter input conversions such and numbers vectors and maps"
   ([^clojure.lang.ArraySeq data]

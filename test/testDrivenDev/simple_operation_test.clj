@@ -1,6 +1,6 @@
 (ns testDrivenDev.simple-operation-test
   (:require [codeGeneration.RC-code-generation :refer [R->generate]]
-            [dsl.primary-operations :refer :all]
+            [codeGeneration.base-operators :refer :all]
             [clojure.test :refer :all]
             [dsl.composit-operations :refer :all]
             :reload))
@@ -25,10 +25,6 @@
                "dog<-4;m1<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));m2<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));m3<-mean(x=c(1,1,1,dog),y=c(1,1,1,dog));stripchart(c(m1,m2,m3))"))
            (is 
              (= 
-               (R->generate (mean 1 2 3))
-               "mean(c(1,2,3))"))
-           (is 
-             (= 
-               (R->generate (mean (R->vector 1 2 3)))
+               (R->generate (R->mean (R->vector 1 2 3)))
                "mean(c(1,2,3))")))
   
