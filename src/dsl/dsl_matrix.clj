@@ -1,6 +1,6 @@
 (ns dsl.dsl-matrix
   (:require [support.RC-support :as sup]
-            [codeGeneration.base-operators :as R]))
+            [transformation.R-struct-gen :as R]))
 
 (defn matrix-simple [num-row num-col data-vec]
   "Creates a matrix with num-rows, num-cols and data as vector, set or R vector"

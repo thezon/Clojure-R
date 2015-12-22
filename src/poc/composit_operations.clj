@@ -1,7 +1,7 @@
 (ns dsl.composit-operations
   (:require  [support.RC-support :as sup]
-             [codeGeneration.RC-code-generation :as gen]
-             [codeGeneration.base-operators :as R]))
+             [transformation.code-generation :as gen]
+             [transformation.R-thin-client :as R]))
 
 ; needs to be removed
 

@@ -1,6 +1,6 @@
 (ns testDrivenDev.simple-operation-test
-  (:require [codeGeneration.RC-code-generation :refer [R->generate]]
-            [codeGeneration.base-operators :refer :all]
+  (:require [transformation.code-generation :refer [R->generate]]
+            [transformation.R-thin-client :refer :all]
             [clojure.test :refer :all]
             [dsl.composit-operations :refer :all]
             :reload))

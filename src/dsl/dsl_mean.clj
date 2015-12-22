@@ -1,7 +1,7 @@
 (ns dsl.dsl-mean
   (:require [support.RC-support :as sup]
-            [codeGeneration.RC-code-generation :as gen]
-            [codeGeneration.base-operators :as R]))
+            [transformation.R-struct-gen :as R]))
+
 
 
 (defn mean-simple [& data] 
