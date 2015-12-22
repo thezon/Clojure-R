@@ -1,10 +1,13 @@
 (ns testDrivenDev.integration-test
-  (:require [transformation.code-generation :refer [R->generate]]
-            [transformation.R-thin-client :refer :all]
-            [dsl.composit-operations :refer :all]
+  (:require [transformation.code-generation :as gen]
+            [transformation.R-thin-client :refer :all] 
+            [dsl.dsl-boxplot :as box]
+            [transformation.code-generation :as gen]
+            [dsl.dsl-dataframe :as df]
             [clojure.test :refer :all]
             :reload))
 
+(comment "need to refactor testing scripts"
 (deftest mean-complex-test
   (testing "mean structure taking map and vector failed"
     (is
@@ -32,3 +35,4 @@
 (defn run-all []
   (do (summary-complex-test)
     (mean-complex-test)))
+)
