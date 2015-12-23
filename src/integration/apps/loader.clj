@@ -2,14 +2,14 @@
       :doc "Entry point for application that loads all configurations and initializes applications.
             Default configuration is dev enviroment."}
 integration.apps.loader
-  (:require [integration.apps.interface-cran :as cran]
+  (:require [integration.apps.webservice :as serv]
             [integration.apps.integration-java :as java]
             [clojure.tools.logging :as log])
   (:gen-class))
 
 (defn get-config []
   (try
-    (read-string (slurp "config/clojure-R-config.txt"))
+    (read-string (slurp "config/clojure-R-config.properties"))
     (catch Exception ex 
       (do
         (log/error "cannot load clojure-R-config.")
@@ -20,7 +20,7 @@ integration.apps.loader
   (try 
     (let [conf-map (get-config)]
       (cond
-        (= :cran (:instance conf-map))
+        (= :serv (:instance conf-map))
         (cran/run-cran-instance)
         (= :java (:instance conf-map))
         (java/run-java-instance)
