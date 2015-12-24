@@ -5,6 +5,7 @@
 ;These functions are verbose and normally should not be used by users
 ;parameter inputs are not transformed only added to the datastructure
 
+;needs to be removed
 (defn gen-R-struct [operation parms-vec]
   {:R-struct true :oper operation :parms parms-vec})
 
