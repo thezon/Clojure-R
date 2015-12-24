@@ -1,4 +1,4 @@
-<table style="border: none !important;"><tr><td style="font: large bold !important;">Clojure-R v0.2</td><td>
+<table style="border: none !important;"><tr><td style="font: large bold !important;">Clojure-R v0.1.3</td><td>
   <img src="https://16afd541-a-62cb3a1a-s-sites.googlegroups.com/site/thezonwiki/technologies/clojuReIcon.png?attachauth=ANoY7cog_PBGhYP31-OL28Ij9umWvkORdiTVXeKILg95mEL8lava6vEfBCuB1jzKuD38WhQJDK50_kYOwa45AbT0CXgTiJLlHb7EPkxipllBrePYeJ9SZjboVruPAz5OtF2qCEVxAtRtd47rcrD7gDG3ZqIYGWisl3HAwdMzWYWn2RGT4Es-1pre4X-rGjwRsjU5ucP2XDBrodNRAZd2CiIKXYh7NqafuRnZ4VkgF06L-Zg6r_EoWQE%3D&attredirects=0"  style="width:30px;height:22px"></td></tr></table>
 =======
 
