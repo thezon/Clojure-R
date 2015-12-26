@@ -3,7 +3,7 @@
             [transformation.R-struct-gen :as R]
             [clojure.tools.logging :as log]))
 
-(defn matrix-simple [num-row num-col data-vec]
+(defn R->matrix-simple [num-row num-col data-vec]
   "Creates a matrix with num-rows, num-cols and data as vector, set or R vector"
   (try
     (R/R->matrix
@@ -19,9 +19,9 @@
           :default
           (throw (Exception. (str "Invalid data type to matrix"))))))
  (catch Exception ex
-   (log/error ex "Error in matrix-simple."))))
+   (log/error ex "Error in R->matrix-simple."))))
    
- (defn matrix-configured [attribute-map]
+ (defn R->matrix-configured [attribute-map]
   (apply R/R->matrix 
          (map (fn [v] (R/R->= (R/R->raw (name (first v)))
                               (if (coll? (second v))

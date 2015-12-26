@@ -11,7 +11,13 @@
   
 (defn R->number [value]
   (str value))
+
+(defn R->string [value]
+  (str "\"" value "\"" ))
   
+(defn R->print [& data]
+  (str "print(" (apply str (interpose "," data)) ")"))
+
 (defn R->= [var-name value]
   (str  var-name "=" value))
 

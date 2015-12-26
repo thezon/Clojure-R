@@ -2,7 +2,7 @@
   (:require [support.RC-support :as sup]
             [transformation.R-struct-gen :as R]))
 
-(defn histogram-attributes [attribute-map]
+(defn R->histogram-attributes [attribute-map]
   (apply R/R->histogram 
          (map (fn [v] 
                 (R/R->= (R/R->raw (name (first v)))

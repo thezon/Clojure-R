@@ -3,7 +3,7 @@
             [transformation.R-struct-gen :as R]
             [clojure.tools.logging :as log]))
 
-(defn mean-simple [& data] 
+(defn R->mean-simple [& data] 
   "Gets mean of data, data can be numbers, vector, set or r-vector"
   (try
     (cond
@@ -18,9 +18,9 @@
         :default
       (throw (Exception. (str "Invalid data type to mean"))))
   (catch Exception ex
-    (log/error ex "Error in mean-simple."))))
+    (log/error ex "Error in R->mean-simple."))))
 
-(defn mean-configured [attribute-map]
+(defn R->mean-configured [attribute-map]
   (apply R/R->mean 
          (map (fn [v] 
                 (R/R->= (R/R->raw (name (first v)))

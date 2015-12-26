@@ -6,9 +6,9 @@
 
 
 (deftest perform-test
-  (testing "Failed testing mean-configured"
+  (testing "Failed testing R->mean-configured"
            (is
              (= "dotchart(x=c(1,4,3));" 
-                (gen/R->generate (dot/dotchart-attributes {:x (vec/vector-simple 1 4 3)}))))))
+                (gen/R->generate (dot/R->dotchart-attributes {:x (vec/R->vector-simple 1 4 3)}))))))
 
 

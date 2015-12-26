@@ -8,4 +8,4 @@
   (testing "Failed testing histogram-attrubutes"
            (is
              (= "hist(x=c(1,4,3));" 
-                (gen/R->generate (histogram/histogram-attributes {:x (vec/vector-simple 1 4 3)}))))))
+                (gen/R->generate (histogram/R->histogram-attributes {:x (vec/R->vector-simple 1 4 3)}))))))

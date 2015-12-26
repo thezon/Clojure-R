@@ -8,5 +8,5 @@
   (testing "Failed testing boxplot-attrubutes"
            (is
              (= "data.frame(c(1,1,2),c(3,4,5));"
-                (gen/R->generate (df/dataframe-vec [1 1 2][3 4 5]))))))
+                (gen/R->generate (df/R->dataframe-vec [1 1 2][3 4 5]))))))
 

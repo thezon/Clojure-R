@@ -12,18 +12,18 @@
 
 (defn boxplot-exp-1 []
   "create boxplot with 10 random vectors values ranging from 0 to 99"
-  (generate (boxplot-attributes 
-              {:x (apply dataframe-vec 
+  (generate (R->boxplot-attributes 
+              {:x (apply R->dataframe-vec 
                          (repeatedly 5
                                      (fn [] (into [] (repeatedly 10 #(rand-int 100))))))})))
 
 (defn dataframe-exp-2 []
   "create a dataframe"
   (generate
-    (dataframe-variables 
+    (R->dataframe-variables 
       (R->=
         (R->raw "test1")
-        (vector-simple 1 2 3))
+        (R->vector-simple 1 2 3))
       (R->=
         (R->raw "test2")
-        (vector-simple 1 2 3)))))
+        (R->vector-simple 1 2 3)))))

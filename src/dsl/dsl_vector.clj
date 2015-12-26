@@ -2,7 +2,7 @@
   (:require [support.RC-support :as sup]
             [transformation.R-struct-gen :as R]))
 
-(defn vector-simple [& values]
+(defn R->vector-simple [& values]
   (if  (coll? (first values))
     (apply R/R->vector (map R/R->raw (first values)))
     (apply R/R->vector (map R/R->raw values))))

@@ -2,7 +2,7 @@
   (:require [support.RC-support :as sup]
             [transformation.R-struct-gen :as R]))
 
-(defn boxplot-attributes [attribute-map]
+(defn R->boxplot-attributes [attribute-map]
   (apply R/R->boxplot 
          (map (fn [v] 
                 (R/R->= (R/R->raw (name (first v)))

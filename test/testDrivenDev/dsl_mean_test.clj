@@ -7,23 +7,23 @@
             :reload))
 
 (deftest perform-test 
-    (testing "Failed testing mean-configured"
+    (testing "Failed testing R->mean-configured"
              (is
                (= "mean(x=c(1,4,3));" 
-                  (gen/R->generate (mean/mean-configured {:x (vec/vector-simple 1 4 3)})))))
+                  (gen/R->generate (mean/R->mean-configured {:x (vec/R->vector-simple 1 4 3)})))))
     
     
-    (testing "Failed testing matrix-configured"
+    (testing "Failed testing R->matrix-configured"
              (is
                (= "mean(c(1,4,3));" 
-                  (gen/R->generate (mean/mean-simple (vec/vector-simple 1 4 3)))))
+                  (gen/R->generate (mean/R->mean-simple (vec/R->vector-simple 1 4 3)))))
              (is
                (= "mean(c(1,4,3));" 
-                  (gen/R->generate (mean/mean-simple [1 4 3]))))
+                  (gen/R->generate (mean/R->mean-simple [1 4 3]))))
              (is
                (= "mean(c(1,4,3));" 
-                  (gen/R->generate (mean/mean-simple #{1 4 3}))))
+                  (gen/R->generate (mean/R->mean-simple #{1 4 3}))))
              (is
                (= "mean(c(1,4,3));" 
-                  (gen/R->generate (mean/mean-simple 1 4 3))))))
+                  (gen/R->generate (mean/R->mean-simple 1 4 3))))))
     

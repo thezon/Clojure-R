@@ -5,15 +5,27 @@
 ;These functions are verbose and normally should not be used by users
 ;parameter inputs are not transformed only added to the datastructure
 
-;needs to be removed
 (defn gen-R-struct [operation parms-vec]
   {:R-struct true :oper operation :parms parms-vec})
 
 (defn R->raw [data]
   (assoc (gen-R-struct :R->raw [data]) :raw true))
 
+(defn R->string [val]
+  (assoc (gen-R-struct :R->string [val]) :raw true))
+
+(defn R->number [val]
+  (assoc (gen-R-struct :R->number [val]) :raw true))
+
+;should this be here?
+(defn R->keyword [val] 
+  (assoc (gen-R-struct :R->keyword [val]) :raw true))
+
 (defn R->empty []
   (assoc (gen-R-struct :R->raw [""]) :raw true))
+
+(defn R->print[val]
+  (gen-R-struct :R->print [val]))
 
 (defn R->mean [& data]
   "Takes vector, R-vector, numbers or attribute map"
@@ -54,14 +66,8 @@
   "Takes numbers or key"
   (gen-R-struct :R->sample (into [] data)))
 
-(defn R->number [val]
-  (gen-R-struct :R->number [val]))
-
-(defn R->keyword [val]
-  (gen-R-struct :R->keyword [(name val)]))
-
 (defn R->def [var-name value]
-  (gen-R-struct :R->def [(name var-name) value]))
+  (gen-R-struct :R->def [var-name value]))
 
 (defn R->vector [& data]
   (gen-R-struct :R->vector (into [] data)))
@@ -88,11 +94,11 @@
   (gen-R-struct :R->slurp [path]))
 
 (defn R->dataframe? [var]
-  (gen-R-struct :R->dataframe? [(name var)]))
+  (gen-R-struct :R->dataframe? [var]))
 
 (defn R->vector? [var]
-  (gen-R-struct :R->vector? [(name var)]))
+  (gen-R-struct :R->vector? [var]))
 
 (defn R->rownames [var]
-  (gen-R-struct :R->rownames? [(name var)]))
+  (gen-R-struct :R->rownames? [var]))
 

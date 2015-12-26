@@ -1,4 +1,5 @@
-(ns rc.core)
+(ns rc.core
+  (:require [clojure.tools.logging :as log]))
 
 
 ;seperated from ns as not generating correctly
@@ -11,19 +12,25 @@
     '[dsl.dsl-boxplot]
     '[dsl.dsl-dotchart]
     '[dsl.dsl-dataframe]
-    '[transformation.R-struct-gen]
-    ;'[transformation.R-thin-client :as tc]
-    ))
+    ;'[transformation.R-struct-gen]
+    '[dsl.dsl-R-core]))
 
 (force-dep-reload)
 
+(defn condition-string [in-str]
+  (clojure.string/replace
+    (clojure.string/replace in-str #"(?<!##)\((?!\()" "(R->")
+    #"##\(" "("))
+
 (defn clojure-R-transform [clojure-string]
   (do (force-dep-reload)
-    (R->generate
-      (eval
-        (read-string clojure-string)))))
-
-;use this for convient repl sandbox
+    (try 
+      (R->generate
+        (eval
+          (read-string (condition-string clojure-string))))
+      (catch Exception ex
+        (do (clojure.tools.logging/error "Generation Error" ex)
+        (str "Error: " ex ))))))
 
 
 

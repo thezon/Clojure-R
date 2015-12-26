@@ -8,4 +8,4 @@
   (testing "Failed testing boxplot-attrubutes"
            (is
              (= "boxplot(x=c(1,4,3));" 
-                (gen/R->generate (box/boxplot-attributes {:x (vec/vector-simple 1 4 3)}))))))
+                (gen/R->generate (box/R->boxplot-attributes {:x (vec/R->vector-simple 1 4 3)}))))))
