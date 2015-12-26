@@ -1,4 +1,4 @@
-<table style="border: none !important;"><tr><td style="font: large bold !important;">Clojure-R v0.2</td><td>
+<table style="border: none !important;"><tr><td style="font: large bold !important;">Clojure-R v0.1.3</td><td>
   <img src="https://16afd541-a-62cb3a1a-s-sites.googlegroups.com/site/thezonwiki/technologies/clojuReIcon.png?attachauth=ANoY7cog_PBGhYP31-OL28Ij9umWvkORdiTVXeKILg95mEL8lava6vEfBCuB1jzKuD38WhQJDK50_kYOwa45AbT0CXgTiJLlHb7EPkxipllBrePYeJ9SZjboVruPAz5OtF2qCEVxAtRtd47rcrD7gDG3ZqIYGWisl3HAwdMzWYWn2RGT4Es-1pre4X-rGjwRsjU5ucP2XDBrodNRAZd2CiIKXYh7NqafuRnZ4VkgF06L-Zg6r_EoWQE%3D&attredirects=0"  style="width:30px;height:22px"></td></tr></table>
 =======
 
@@ -33,23 +33,6 @@ This project is dedicated to combining the power of the open source R and Clojur
 
   This project will target both the java enviroment using <a href="https://github.com/bedatadriven/renjin">renjin</a> jar and CRAN enviroment using <a href="https://www.rforge.net/rJava/index.html">rJava</a> library. This will allow users of the R enviroment to develop in clojure without change of the current IDE. For java project simply including renjin jar and clojur-R jar will allow the the usage of clojure-R on the JVM. 
   
-  
-## Change History / Comming soon
-0.1 10/1/2014 <br/>
-Fully inclusive clojure R DSL with IDE
-
-0.2 6/30/2015     
-Project scope changed to only include DSL and emition of R code. REPL will no longer be leveraged 
-as a possible R IDE or emitted code exicution with Renjin. Output code can be exicuted using
-R studio server or thick client through associated connections. 
-
-0.3  7/30/2015 <br/>
-Framework created consisting of:<br/>
-1) generator functions <br/>
-2) internal DSL <br/>
-3) User DSL<br/>
-4) simple compiler*<br/>
-5) preprocessor for code generations<br/>
 
 ## License
 Copyright © 2015 
