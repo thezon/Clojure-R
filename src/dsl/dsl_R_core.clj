@@ -17,4 +17,7 @@
 (defn R->print [val]
   (if (string? val)
     (R/R->print (R/R->string val))
-    (R/R->print R/R->raw val)))
+    (R/R->print (R/R->raw val))))
+
+(defn R->raw [value]
+  (R/R->raw value))

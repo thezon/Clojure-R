@@ -1,60 +1,33 @@
-(ns codeGeneration.RC-code-generation)
+(ns transformation.code-generation
+  (:require [clojure.tools.logging :as log]))
 
-(defn gen-R->def [var-name value]
-  (str (name var-name) "<-" value))
+; these functions take input of a R data structure and converts to a r command string
 
-(defn gen-R->= [var-name value]
-  (str (name var-name) "=" value))
-
-(defn gen-R->vector [values]
-  (str (reduce str "c("  (interpose "," values)) ")"))
-
-(defn gen-R->range [low-val high-val]
-  (str "(" low-val ":" high-val ")"))
-
-(defn gen-R->slurp [path]
-  (str "read.table(\"" path "\")"))
-
-(defn gen-R->mean [& data]
-     (str "mean(" (apply str (interpose "," data)) ")"))
-
-(defn gen-R->dataframe [& data]
-     (str "data.frame(" (apply str (interpose "," data)) ")"))
 
 (defn gen-R-post-proc [& data]
   (apply str (interpose ";" data)))
 
-(defn gen-R->summary [& data]
-     (str "summary(" (apply str (interpose "," data)) ")"))
-
-(defn gen-R-post-proc [data]
-  (apply str (interpose ";" data)))
-
-(defn gen-R-struct [operation parms-vec]
-  {:R-struct true :oper operation :parms parms-vec})
-
-(defn gen-R->dataframe? [& data]
-  (str "is.data.frame(" (apply str (interpose "," data)) ")"))
-
-(defn gen-R->vector? [data]
-  (str "is.vector(" data ")"))
-
-(defn gen-R->rownames [data]
-  (str "row.names(" data ")"))
-
-(defn gen-R->matrix [& data]
-  (str "matrix(" (apply str (interpose "," data)) ")"))
-
 (defn R->generate-command [R-rep]
-  "Mapping of clojure R representation to R language"
+  "Mapping of clojure R representation to R language
+   Only accepts R-structs and vectors of R-structs"
   (apply 
-    (resolve (symbol (str "codeGeneration.RC-code-generation/gen-" (name (:oper R-rep)))))
-    (for [entry (:parms R-rep)]
-      (cond 
-        (map? entry) (R->generate-command entry)
-        (seq? entry) (apply R->generate-command entry) 
-        :default  entry))))
+     (resolve 
+        (symbol (str "transformation.R-thin-client/" (name (:oper R-rep))))); get code emittion function
+      (for [entry (:parms R-rep)] ; process each parameter
+        (cond 
+          (:raw R-rep) ;raw data is end of processing for branch
+          entry
+          (and (map? entry) (:R-struct entry)) ;process R struct
+          (R->generate-command entry) 
+          (vector? entry) ;process list of R struct
+          (map R->generate-command entry)
+          :default  ;malformed input
+          (throw (Exception. (str "Generator must only contain vectors and R-structs\nfound: " entry "\n")))))))
 
 (defn R->generate [& R-rep]
   "Mapping of clojure R representation to R language"
-  (->> R-rep (map R->generate-command) gen-R-post-proc ))
+  (try
+    (log/spy :info (apply str (map (fn [x](str (R->generate-command x) ";")) R-rep)))
+    (catch Exception ex
+      (log/error ex "Error in transformation."))))
+  

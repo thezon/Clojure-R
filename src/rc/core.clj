@@ -19,8 +19,10 @@
 
 (defn condition-string [in-str]
   (clojure.string/replace
-    (clojure.string/replace in-str #"(?<!##)\((?!\()" "(R->")
-    #"##\(" "("))
+    (clojure.string/replace
+      (clojure.string/replace in-str #"(?<!#)\((?!\()" "(R->")
+      #"#\(" "(")
+  #"##\(" "#("))
 
 (defn clojure-R-transform [clojure-string]
   (do (force-dep-reload)
